@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">Mon Portfolio</a>
+            <div>
+                <a href="#about">À propos</a>
+                <a href="#gallery">Galerie</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div>
+            <h1>Bienvenue dans mes créations</h1>
+            <p>Découvrez mes créations uniques en couture ou comme tu veux</p>
+        </div>
+    </div>
+
+    <section id="about">
+        <h2>À propos</h2>
+        <p>ici tu te présentes si tu as des soucis pour la mise en pages ou pour mettre tes images ou des questions n'hésite pas je serais ravi de vous aider et à vous apprendre comment ca marche sinon tu peux donner le code a chatgpt et lui demander de changer quelque parti mais en gardant l'essentiel du site tu pourrais changer quelque truc comme ça mais vaut mieux me demander! et si cantin connait le langage html il devrait essayer de crée un dossier pour le css et y faire reference ce sera plus jolie en terme d'architecture sinon vous demandez a chatgpt il devra y arrivez, voilà bon courage !</p>
+    </section>
+
+<section id="gallery">
+    <h2>Galerie</h2>
+    <div class="gallery">
+        <img src="Image\COUTURE\CORSAGE\1.jpg" alt="Création 1" class="active">
+        <img src="Image\COUTURE\CORSAGE\2.png" alt="Création 2" >
+        <img src="Image\COUTURE\PEAU DE LAPIN\1.png" alt="Création 3" >
+        <img src="Image\COUTURE\PEAU DE LAPIN\2.png" alt="Création 4" >
+        <img src="Image\COUTURE\PEAU DE LAPIN\3.png" alt="Création 5">
+        <img src="Image\COUTURE\PEAU DE LAPIN\4.png" alt="Création 6" >
+        <img src="Image\ILLUSTRATIONS\L'ECOLE DE LA PANTHERE\1.jpg" alt="Création 7" >
+        <img src="Image\ILLUSTRATIONS\CROQUIS CARNET DE DESSIN\2.jpg" alt="Création 8">
+    </div>
+    <div class="thumbnails-container">
+        <button class="arrow left" onclick="scrollThumbnails(-1)">&#10094;</button>
+        <div class="thumbnails">
+            <img src="Image\COUTURE\CORSAGE\1.jpg" alt="Création 1" onclick="setMainImage(0)">
+            <img src="Image\COUTURE\CORSAGE\2.png" alt="Création 2" onclick="setMainImage(1)">
+            <img src="Image\COUTURE\PEAU DE LAPIN\1.png" alt="Création 3" onclick="setMainImage(2)">
+            <img src="Image\COUTURE\PEAU DE LAPIN\2.png" alt="Création 4" onclick="setMainImage(3)">
+            <img src="Image\COUTURE\PEAU DE LAPIN\3.png" alt="Création 5" onclick="setMainImage(4)">
+            <img src="Image\COUTURE\PEAU DE LAPIN\4.png" alt="Création 6" onclick="setMainImage(5)">
+            <img src="Image\ILLUSTRATIONS\L'ECOLE DE LA PANTHERE\1.jpg" alt="Création 7" onclick="setMainImage(6)">
+            <img src="Image\ILLUSTRATIONS\CROQUIS CARNET DE DESSIN\2.jpg" alt="Création 8" onclick="setMainImage(7)">
+        </div>
+        <button class="arrow right" onclick="scrollThumbnails(1)">&#10095;</button>
+    </div>
+</section>
+
+<!-- Modal pour le plein écran -->
+<div id="fullscreenModal" class="fullscreen-modal">
+    <span class="close-modal" onclick="closeFullscreen()">&times;</span>
+    <img id="fullscreenImage" src="" alt="Fullscreen Image">
+    <button class="arrow left fullscreen-arrow" onclick="changeFullscreenImage(-1)">&#10094;</button>
+    <button class="arrow right fullscreen-arrow" onclick="changeFullscreenImage(1)">&#10095;</button>
+</div>
+
+    
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Ton contact &nbsp;? <a href="ecristonemailici">le lien de ton email</a> ou tu peux mettre tes réseaux comme tu veux</p>
+    </section>
+    <footer>
+        <p>&copy;Site Ellyn - Créé avec passion.<a href="#">Mentions légales</a></p>
+    </footer>
+    <script src="js/script.js"></script>
+    
+</body>
+</html>
