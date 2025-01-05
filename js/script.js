@@ -1,74 +1,87 @@
+const navLinks = document.querySelectorAll('nav a');
+const headerHeight = document.querySelector('header').offsetHeight;
 
-
-const images = document.querySelectorAll('.gallery img');
-let currentIndex1 = 0;
-
-function showNextImage() {
-    const currentImage = images[currentIndex1];
-    currentIndex = (currentIndex1 + 1) % images.length;
-    const nextImage = images[currentIndex1];
-
-    currentImage.classList.remove('active');
-    nextImage.classList.add('active');
-}
-
-setInterval(showNextImage, 2500);
-
-
-const thumbnails1 = document.querySelector('.thumbnails');
-const mainImages = document.querySelectorAll('.gallery img');
-
-function scrollThumbnails(direction) {
-    const scrollAmount = 150; // Quantité de défilement en pixels
-    thumbnails1.scrollBy({
-        left: direction * scrollAmount,
-        behavior: 'smooth'
+function activateNavLink(sectionId) {
+    navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${sectionId}`);
     });
 }
 
-function setMainImage(index) {
-    mainImages.forEach((img, i) => {
-        if (i === index) {
-            img.classList.add('active');
-        } else {
-            img.classList.remove('active');
+document.addEventListener('scroll', () => {
+    let currentSection = '';
+    document.querySelectorAll('section').forEach(section => {
+        const sectionTop = section.offsetTop - headerHeight - 10; // Compense la hauteur
+        if (window.scrollY >= sectionTop) {
+            currentSection = section.getAttribute('id');
         }
     });
-}
-
-const images2 = document.querySelectorAll('.gallery img');
-const modal = document.getElementById('fullscreenModal');
-const fullscreenImage = document.getElementById('fullscreenImage');
-let currentIndex = 0;
-
-// Ouvrir la modale en plein écran
-function openFullscreen(index) {
-currentIndex = index;
-fullscreenImage.src = images2[currentIndex].src;
-modal.style.display = 'flex';
-}
-
-// Fermer la modale en plein écran
-function closeFullscreen() {
-modal.style.display = 'none';
-fullscreenImage.src = '';
-}
-
-// Changer d'image dans le mode plein écran
-function changeFullscreenImage(direction) {
-currentIndex = (currentIndex + direction + images2.length) % images2.length;
-fullscreenImage.src = images2[currentIndex].src;
-}
-
-// Fermer la modale si on clique à l'extérieur de l'image
-modal.addEventListener('click', (event) => {
-if (event.target === modal) {
-closeFullscreen();
-}
+    activateNavLink(currentSection);
 });
 
-// Ajouter un événement clic sur chaque image pour activer le mode plein écran
-images2.forEach((img, index) => {
-img.addEventListener('click', () => openFullscreen(index));
+navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+            const scrollPosition = targetSection.offsetTop - headerHeight + 20; // Ajuste avec un décalage
+            window.scrollTo({
+                top: scrollPosition,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+let lastScrollY = window.scrollY; // Sauvegarde la position initiale du scroll
+const header = document.querySelector('header');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > lastScrollY) {
+        // Si on descend, on cache la navbar
+        header.classList.add('hidden');
+    } else {
+        // Si on remonte, on affiche la navbar
+        header.classList.remove('hidden');
+    }
+    lastScrollY = window.scrollY; // Met à jour la position du scroll
 });
 
+const galleries = document.querySelectorAll('.gallery');
+galleries.forEach(gallery => {
+    const images = gallery.querySelectorAll('img');
+    const description = gallery.querySelector('image-description'); // La div qui contient la description
+    const leftArrow = gallery.querySelector('.nav-left');
+    const rightArrow = gallery.querySelector('.nav-right');
+
+    let currentIndex = 0;
+
+    // Fonction pour mettre à jour l'image active
+    function updateImage() {
+        images.forEach((img, index) => {
+            img.classList.remove('active');
+            if (index == currentIndex) {
+                img.classList.add('active');
+                description.textContent = img.getAttribute('data-description');
+            }
+        });
+    }
+
+    // Fonction pour passer à l'image suivante
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateImage();
+    }
+
+    // Fonction pour passer à l'image précédente
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateImage();
+    }
+
+    // Écouteurs pour les flèches
+    leftArrow.addEventListener('click', prevImage);
+    rightArrow.addEventListener('click', nextImage);
+
+    // Initialisation
+    updateImage();
+});

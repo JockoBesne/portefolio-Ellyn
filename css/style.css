@@ -1,218 +1,171 @@
-        body {
-            margin: 0;
-            font-family: 'Roboto', sans-serif;
-            color: #333;
-            background-color: #f4f4f9;
-        }
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: auto;
-            padding: 10px 20px;
-        }
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #333;
-            text-decoration: none;
-        }
-        nav a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            margin: 0 20px;
-            position: relative;
-            transition: color 0.3s;
-        }
-        nav a:hover {
-            color: #e91e63;
-        }
-        .hero {
-            height: 100vh;
-            background: url("..\Image\fond-de-site-page-de-garde\palette-de-peinture.png") center/cover no-repeat;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: black;
-            text-shadow: none;
-        }
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin: 0;
-            animation: fadeInDown 1.5s ease;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            animation: fadeInUp 1.5s ease;
-        }
-        @keyframes fadeInDown {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        @keyframes fadeInUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        section {
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 20px;
-            border: 1px solid rgba(192, 192, 192, 0.6);
-            border-radius: 8px;
-            background: #fff;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        section:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-        section h2 {
-            color: #333;
-        }
-        .gallery {
-            position: relative;
-            width: 100%;
-            height: 600px;
-            overflow: hidden;
-        }
-        .gallery img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            opacity: 0;
-            transition: opacity 1s ease-in-out; /* Transition douce */
-            z-index: 1; /* Assurez-vous que seule l'image active est visible */
-        }
-        
-        .gallery img.active {
-            opacity: 1;
-            z-index: 2; /* Met l'image active devant */
-        }
-        
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #333;
-            color: white;
-        }
-        footer a {
-            color: #e91e63;
-            text-decoration: none;
-        }
-        .thumbnails-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-            margin-top: 20px;
-        }
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    background-color: #303030;
+}
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+    padding: 10px 20px;
+}
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    margin: 0 20px;
+    position: relative;
+    transition: color 0.3s, background-color 0.3s;
+}
 
-        .thumbnails {
-            display: flex;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            max-width: 80%;
-            gap: 10px;
-            padding: 10px 0;
-            scrollbar-width: none; /* Masque la barre de défilement dans certains navigateurs */
-        }
+nav a.active {
+    background-color: #e91e63; /* Rectangle color */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+nav a:hover {
+    color: #e91e63;
+}
 
-        .thumbnails img {
-            height: 100px;
-            cursor: pointer;
-            transition: transform 0.2s ease, border 0.2s ease;
-        }
+header.hidden {
+    transform: translateY(-100%); /* Cache la navbar en la déplaçant vers le haut */
+    transition: transform 0.3s ease-in-out; /* Animation fluide pour le mouvement */
+}
 
-        .thumbnails img:hover {
-            transform: scale(1.1);
-            border: 2px solid #e91e63;
-        }
+.hero {
+    height: 100vh;
+    background: url("..\\Image\\fond-de-site-page-de-garde\\palette-de-peinture.png") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: black;
+    text-shadow: none;
+}
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    margin: 0;
+    animation: fadeInDown 1.5s ease;
+}
+.hero p {
+    font-size: 1.2rem;
+    animation: fadeInUp 1.5s ease;
+}
+@keyframes fadeInDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+@keyframes fadeInUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+section {
+    max-width: 1200px;
+    margin: 150px auto 30px; /* Décalage plus important en haut */
+    padding: 20px;
+    border: 1px solid rgba(192, 192, 192, 0.6);
+    border-radius: 8px;
+    background: #e1e1e1;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+section:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+section h2 {
+    font-family: 'Playfair Display', serif;
+    color: #333;
+    margin-top: 0; /* Position du titre plus haut */
+    font-size: 2rem;
+}
+.gallery {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.gallery img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+}
+.gallery img.active {
+    opacity: 1;
+    z-index: 2;
+}
+.image-description {
+    max-width: 1200px; /* Même largeur que les sections */
+    margin: 20px auto; /* Centré horizontalement avec un peu d'espace au-dessus et au-dessous */
+    padding: 15px; /* Ajoute un espace intérieur pour rendre le texte plus aéré */
+    border: 1px solid rgba(192, 192, 192, 0.6); /* Bordure subtile */
+    border-radius: 8px; /* Coins arrondis */
+    background: #fff; /* Fond blanc */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Légère ombre */
+    text-align: center; /* Centre le texte */
+    color: #555; /* Couleur du texte */
+    font-size: 1rem; /* Taille du texte */
+    transition: transform 0.3s, box-shadow 0.3s; /* Animation légère pour un effet dynamique */
+}
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+}
+footer a {
+    color: #e91e63;
+    text-decoration: none;
+}
+/* Styles des flèches */
+button.nav-left, button.nav-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 3;
+    border-radius: 50%;
+}
 
-        .arrow {
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            cursor: pointer;
-            padding: 10px;
-            font-size: 18px;
-            position: relative;
-            z-index: 100;
-            transition: background-color 0.3s;
-        }
+button.nav-left {
+    left: 10px;
+}
 
-        .arrow:hover {
-            background-color: #e91e63;
-        }
+button.nav-right {
+    right: 10px;
+}
 
-        .arrow.left {
-            margin-right: 10px;
-        }
-
-        .arrow.right {
-            margin-left: 10px;
-        }
-        /* Styles pour la modale plein écran */
-        .fullscreen-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .fullscreen-modal img {
-            max-width: 90%;
-            max-height: 80%;
-            object-fit: contain;
-            object-position: center;
-        }
-
-        .fullscreen-modal .close-modal {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 2rem;
-            color: white;
-            cursor: pointer;
-        }
-
-        .fullscreen-modal .fullscreen-arrow {
-            position: absolute;
-            top: 50%;
-            font-size: 2rem;
-            color: white;
-            background: none;
-            border: none;
-            cursor: pointer;
-            transform: translateY(-50%);
-            z-index: 1001;
-        }
-
-        .fullscreen-modal .fullscreen-arrow.left {
-            left: 10px;
-        }   
-
-        .fullscreen-modal .fullscreen-arrow.right {
-            right: 10px;
-        }
+button.nav-left:hover, button.nav-right:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
