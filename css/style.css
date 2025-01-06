@@ -35,9 +35,8 @@ nav a {
     position: relative;
     transition: color 0.3s, background-color 0.3s;
 }
-
 nav a.active {
-    background-color: #e91e63; /* Rectangle color */
+    background-color: #e91e63;
     color: white;
     padding: 5px 10px;
     border-radius: 5px;
@@ -47,8 +46,8 @@ nav a:hover {
 }
 
 header.hidden {
-    transform: translateY(-100%); /* Cache la navbar en la déplaçant vers le haut */
-    transition: transform 0.3s ease-in-out; /* Animation fluide pour le mouvement */
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
 }
 
 .hero {
@@ -79,59 +78,98 @@ header.hidden {
     from { transform: translateY(50px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
 }
-section {
+.section-style {
     max-width: 1200px;
-    margin: 150px auto 30px; /* Décalage plus important en haut */
+    margin: 150px auto 30px;
     padding: 20px;
     border: 1px solid rgba(192, 192, 192, 0.6);
     border-radius: 8px;
     background: #e1e1e1;
     transition: transform 0.3s, box-shadow 0.3s;
 }
-section:hover {
+.section-style:hover {
     transform: scale(1.02);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 section h2 {
     font-family: 'Playfair Display', serif;
     color: #333;
-    margin-top: 0; /* Position du titre plus haut */
+    margin-top: 0;
     font-size: 2rem;
 }
+section p {
+    font-family:'Playfair Display', serif;
+    font-size: 1.1rem;
+}
+
+/* Mise à jour pour aligner les descriptions */
 .gallery {
-    position: relative;
     width: 100%;
-    height: 500px;
+    max-width: 600px;
+    margin: auto;
     overflow: hidden;
+    position: relative;
+    background-color: #fff;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.gallery img {
-    position: absolute;
-    top: 0;
-    left: 0;
+.image-container img {
     width: 100%;
-    height: 100%;
     object-fit: contain;
-    opacity: 0;
+    display: none;
     transition: opacity 0.5s ease;
-    z-index: 1;
 }
-.gallery img.active {
+.image-container img.active {
+    display: block;
     opacity: 1;
-    z-index: 2;
 }
 .image-description {
-    max-width: 1200px; /* Même largeur que les sections */
-    margin: 20px auto; /* Centré horizontalement avec un peu d'espace au-dessus et au-dessous */
-    padding: 15px; /* Ajoute un espace intérieur pour rendre le texte plus aéré */
-    border: 1px solid rgba(192, 192, 192, 0.6); /* Bordure subtile */
-    border-radius: 8px; /* Coins arrondis */
-    background: #fff; /* Fond blanc */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Légère ombre */
-    text-align: center; /* Centre le texte */
-    color: #555; /* Couleur du texte */
-    font-size: 1rem; /* Taille du texte */
-    transition: transform 0.3s, box-shadow 0.3s; /* Animation légère pour un effet dynamique */
+    margin-top: 15px;
+    padding: 10px;
+    text-align: center;
+    font-size: 1rem;
+    color: #555;
+    background: #f9f9f9;
+    border: 1px solid rgba(192, 192, 192, 0.6);
+    border-radius: 8px;
+}
+button.nav-left, button.nav-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 50%;
+}
+button.nav-left {
+    left: 0px;
+}
+button.nav-right {
+    right: 0px;
+}
+button.nav-left:hover, button.nav-right:hover {
+    background-color: rgba(96, 15, 15, 0.7);
+}
+
+
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .gallery {
+        max-width: 100%;
+    }
+    .image-description {
+        font-size: 0.9rem;
+    }
+    button.nav-left, button.nav-right {
+        padding: 8px;
+        font-size: 1.5rem;
+    }
 }
 footer {
     text-align: center;
@@ -142,30 +180,4 @@ footer {
 footer a {
     color: #e91e63;
     text-decoration: none;
-}
-/* Styles des flèches */
-button.nav-left, button.nav-right {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 15px;
-    font-size: 2rem;
-    cursor: pointer;
-    z-index: 3;
-    border-radius: 50%;
-}
-
-button.nav-left {
-    left: 10px;
-}
-
-button.nav-right {
-    right: 10px;
-}
-
-button.nav-left:hover, button.nav-right:hover {
-    background-color: rgba(0, 0, 0, 0.7);
 }

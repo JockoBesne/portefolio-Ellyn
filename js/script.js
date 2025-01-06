@@ -46,24 +46,19 @@ window.addEventListener('scroll', () => {
     lastScrollY = window.scrollY; // Met à jour la position du scroll
 });
 
-const galleries = document.querySelectorAll('.gallery');
-galleries.forEach(gallery => {
-    const images = gallery.querySelectorAll('img');
-    const description = gallery.querySelector('image-description'); // La div qui contient la description
-    const leftArrow = gallery.querySelector('.nav-left');
-    const rightArrow = gallery.querySelector('.nav-right');
-
+function setupGallery(galleryElement) {
+    const images = galleryElement.querySelectorAll('.image-container img');
+    const description = galleryElement.querySelector('.image-description');
+    const leftArrow = galleryElement.querySelector('.nav-left');
+    const rightArrow = galleryElement.querySelector('.nav-right');
     let currentIndex = 0;
 
-    // Fonction pour mettre à jour l'image active
+    // Fonction pour mettre à jour l'image et la description
     function updateImage() {
         images.forEach((img, index) => {
-            img.classList.remove('active');
-            if (index == currentIndex) {
-                img.classList.add('active');
-                description.textContent = img.getAttribute('data-description');
-            }
+            img.classList.toggle('active', index === currentIndex);
         });
+        description.textContent = images[currentIndex].getAttribute('data-description');
     }
 
     // Fonction pour passer à l'image suivante
@@ -72,16 +67,19 @@ galleries.forEach(gallery => {
         updateImage();
     }
 
-    // Fonction pour passer à l'image précédente
+    // Fonction pour revenir à l'image précédente
     function prevImage() {
         currentIndex = (currentIndex - 1 + images.length) % images.length;
         updateImage();
     }
 
-    // Écouteurs pour les flèches
+    // Ajout des événements de clic
     leftArrow.addEventListener('click', prevImage);
     rightArrow.addEventListener('click', nextImage);
 
-    // Initialisation
+    // Initialisation pour afficher la première description
     updateImage();
-});
+}
+
+// Appliquer le script à chaque galerie
+document.querySelectorAll('.gallery').forEach(setupGallery);
