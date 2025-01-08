@@ -51,8 +51,8 @@ header.hidden {
 }
 
 .hero {
-    height: 100vh;
-    background: url("..\\Image\\fond-de-site-page-de-garde\\palette-de-peinture.png") center/cover no-repeat;
+    height: 110vh;
+    background: url("..\\Image\\fond-de-site-page-de-garde\\2.png") center/cover no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,15 +60,14 @@ header.hidden {
     color: black;
     text-shadow: none;
 }
+
 .hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 3rem;
+    font-size: 4rem;
     margin: 0;
-    animation: fadeInDown 1.5s ease;
-}
-.hero p {
-    font-size: 1.2rem;
-    animation: fadeInUp 1.5s ease;
+    margin: -150px 0 0;
+    animation: fadeInDown 2s ease;
+    color:#fff
 }
 @keyframes fadeInDown {
     from { transform: translateY(-50px); opacity: 0; }
